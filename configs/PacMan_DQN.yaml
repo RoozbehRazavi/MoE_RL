@@ -1,0 +1,61 @@
+config_file: "configs"
+load: false
+
+model:
+  distrbuted_value: false
+  state_encoder:
+    type: "cnn"
+    state_embedding:
+      layers:
+        channel: 64
+        type: "Conv2D"
+        filters: 64
+        kernel_size: 3
+        activation: "relu"
+        pool_size: 2
+  MOE:
+    num_experts: 16
+    experts_input_dim: 8
+    experts_output_dim: 64
+    channel_wise_input: true
+    outer_recursion_threshold: 0.5
+    outer_recursive: false
+    MAX_OUT_REC: 2
+    in_recursion_threshold: 0.5
+    in_recursive: false
+    MAX_IN_REC: 2
+    action_wise_gating: false
+    memory_expert: false
+
+  policy:
+    type: "DQN"
+
+training:
+  algorithm: 'DQN'
+  learning_rate: 0.001
+  batch_size: 32
+  update_target_every: 10
+  update_target_softly: true
+  TAU: 0
+  gamma: 0.99
+  eps_start: 0
+  update_eps: true
+  end_eps: 0
+  eps_decay: 0.95
+  num_episodes: 10000
+  update_every: 10
+  update_eps_every: 10
+
+
+evaluation:
+  eval_every: 100
+  render: true
+  log_weights_norm: true
+  save_every: 100
+
+path:
+  experiment_path: ""
+  save_path: "models"
+  figures_path: "figures"
+  videos_path: "videos"
+  logs_path: "logs"

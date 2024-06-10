@@ -1,0 +1,13 @@
+# Environments
+.env
+.venv
+.idea
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+./experiments2/
+
+# ipynb files
+mixture-of-experts.ipynb
